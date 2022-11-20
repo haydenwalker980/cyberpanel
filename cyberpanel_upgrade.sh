@@ -32,9 +32,9 @@ Panel_Build=${Temp_Value:25:1}
 Branch_Name="v${Panel_Version}.${Panel_Build}"
 Base_Number="1.9.3"
 
-Git_User=""
-Git_Content_URL=""
-Git_Clone_URL=""
+Git_User="haydenwalker980"
+Git_Content_URL="https://github.com/haydenwalker980/cyberpanel"
+Git_Clone_URL="https://github.com/haydenwalker980/cyberpanel.git"
 
 MySQL_Version=$(mysql -V | grep -P '\d+.\d+.\d+' -o)
 MySQL_Password=$(cat /etc/cyberpanel/mysqlPassword)
@@ -159,6 +159,8 @@ if hash dmidecode >/dev/null 2>&1; then
     Server_Provider="Microsoft Azure"
   elif [[ -d /usr/local/qcloud ]]; then
     Server_Provider="Tencent Cloud"
+  elif [[ -d /etc/oracle-cloud-agent ]]; then
+    Server_Provider="Oracle Cloud Infrastructure"
   else
     Server_Provider="Undefined"
   fi
@@ -291,8 +293,8 @@ if [[ "$MySQL_Version" = "10.1" ]]; then
   mkdir /etc/cnfbackup
   cp -R /etc/my.cnf.d/ /etc/cnfbackup/
 
-  yum remove MariaDB-server MariaDB-client galera -y
-  yum --enablerepo=mariadb -y install MariaDB-server MariaDB-client galera
+  yum remove mariadb-server mariadb-client galera -y
+  yum --enablerepo=mariadb -y install mariadb-server mariadb-client galera
 
   cp -f /etc/my.cnf.bak /etc/my.cnf
   rm -rf /etc/my.cnf.d/
