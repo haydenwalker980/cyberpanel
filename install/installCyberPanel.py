@@ -279,7 +279,7 @@ class InstallCyberPanel:
 
             command = "DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server"
         elif self.distro == centos:
-            command = 'yum --enablerepo=mariadb -y install mariadb-server mariadb-client'
+            command = 'yum --enablerepo=mariadb -y install mariadb-server'
         elif self.distro == cent8 or self.distro == openeuler:
             ### check if cent8 which means Alma8 then add Mariadb 10.6 repo
 #             if self.distro == cent8:
